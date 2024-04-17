@@ -19,6 +19,7 @@ model User{
   name String
   password String
   posts Post[]
+  username String?
 }
 model Post{
   id String @id @default(uuid())

@@ -1,16 +1,18 @@
 {
   "scripts": {
     "dev": "wrangler dev src/index.ts",
-    "deploy": "wrangler deploy --minify src/index.ts"
+    "deploy": "wrangler deploy --minify src/index.ts",
+    "format": "prettier --write \"src/**/*.ts\""
   },
   "dependencies": {
     "@prisma/client": "^5.12.1",
     "@prisma/extension-accelerate": "^1.0.0",
-    "hono": "^4.2.3",
+    "hono": "^4.2.4",
     "prisma": "^5.12.1"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20240403.0",
+    "prettier": "^3.2.5",
     "wrangler": "^3.47.0"
   }
 }
