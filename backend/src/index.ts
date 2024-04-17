@@ -30,7 +30,7 @@ async function signupHandler(c) {
     const user = await prisma.user.create({
       data: {
         email: body.email,
-        username: body.username, // Include the username field from the request body
+        username: body.username, 
         password: body.password,
         name: body.name,
       },
@@ -52,28 +52,37 @@ async function signupHandler(c) {
 
 app.post('/api/v1/signup', signupHandler)
 
-// app.post('/api/v1/signin', async (c) => {
-//   const body = await c.req.json()
 
-//   try {
-//     const user = await prisma.user.findUnique({
-//       where: {
-//         email: body.email,
-//       },
-//     })
-//     if (!user || user.password !== body.password) {
-//       c.status(403)
-//       return c.json({ error: 'Invalid email or password' })
-//     }
+// sigin api
+app.post('/api/v1/signin', async (c) => {
+  const body = await c.req.json()
+  
+  const prisma = new PrismaClient({
+    // @ts-ignore
+    datasourceUrl: c.env.DATABASE_URL,
+  }).$extends(withAccelerate())
 
-//     // @ts-ignore
-//     const jwt = await sign({ id: user.id }, c.env.JWT_SECRET)
 
-//     return c.json({ jwt })
-//   } catch (error) {
-//     console.error(error)
-//     return c.json({ error: 'Something went wrong' }, 500)
-//   }
-// })
+  try {
+    const user = await prisma.user.findUnique({
+      where: {
+        email: body.email,
+        password:body.password  
+      },
+    })
+    if (!user || user.password !== body.password) {
+      c.status(403)
+      return c.json({ error: 'Invalid email or password' })
+    }
+
+    // @ts-ignore
+    const jwt = await sign({ id: user.id }, c.env.JWT_SECRET)
+
+    return c.json({ jwt })
+  } catch (error) {
+    console.error(error)
+    return c.json({ error: 'Something went wrong' }, 500)
+  }
+})
 
 export default app
