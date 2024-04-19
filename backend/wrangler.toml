@@ -1,8 +1,7 @@
 name = "backend"
 compatibility_date = "2023-12-01"
-
  [vars]
-DATABASE_URL="postgresql://postgres:harsh@localhost:9998/postgres"
+DATABASE_URL="prisma://accelerate.prisma-data.net/?api_key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlfa2V5IjoiYWQ4NWU3YTEtNTkwZC00MmNlLWI1YzMtMjc4ODFjOGZkODIxIiwidGVuYW50X2lkIjoiNDY3ZmE3NDk0MzMwMzkxNTE0YjJjM2ZmMjI0ZmQxZmFjZjRiMWY1YmNlZTNjMzAxODBmMjRkZDFkNmQ5YTZlMSIsImludGVybmFsX3NlY3JldCI6IjE1YTMzN2EzLWIxN2ItNDg2OC1iYmE5LWQxMzZmNzMyNWVkYSJ9.MMEr5cY3r-3iq2kScAuW7rBozrh564J_HjBD6SOGCuQ"
 
 JWT_SECRET="sangeeta"
 
